@@ -1,0 +1,12 @@
+.footer {
+      display: flex;
+      justify-content: space-between;
+      background-color: rgb(94, 94, 203);
+      color: #fff;
+      height: 30pxs;
+      padding: 10px 20px;
+}
+
+.footer:last-child {
+      cursor: pointer;
+}

@@ -1,0 +1,16 @@
+.heart {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+}
+
+.heart>img {
+      pointer-events: none;
+}
