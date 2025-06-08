@@ -87,14 +87,14 @@
       gap: 10px;
 }
 
-.content>img {
+.UserProfileWrapper>div {
+      cursor: pointer;
+      line-height: 1.8;
+}
+
+.imageContent>img {
       position: relative;
       width: 20px;
       height: 20px;
       cursor: pointer;
-}
-
-.UserProfileWrapper>div {
-      cursor: pointer;
-      line-height: 1.8;
 }

@@ -8,7 +8,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      z-index: 1;
+      z-index: 999;
 }
 
 .heart>img {
@@ -21,4 +21,16 @@
 
 .price {
       color: rgb(107, 107, 255);
+}
+
+.likeWrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      top: 0;
+      right: 0;
 }

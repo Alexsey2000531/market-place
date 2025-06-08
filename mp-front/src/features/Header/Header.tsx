@@ -6,14 +6,16 @@ import { paths } from '../../routes/helpers'
 import { selectIsLogged } from '../App/selector'
 import css from './index.module.css'
 import searchLogo from '../../img/search.svg'
-import cubeImage from './img/cube.png'
-import heartImage from './img/heart-empty.png'
-import bellImage from './img/bell.png'
-import cartImage from './img/cart.png'
 import UserDropMenu from './UserDropMenu'
+import BtnFavorites from './components/BtnFavorites'
+import { selectFavorites } from '../Favorites/selectors'
+import BtnOrders from './components/BtnOrders'
+import BtnNotifications from './components/BtnNotifications'
+import BtnCart from './components/BtnCart'
 
 const Header: FC = () => {
   const isLogged = useSelector(selectIsLogged)
+  const idInFavorites = useSelector(selectFavorites)
   const [searchInput, setSearchInput] = useState<string>('')
 
   const changeSearchInput = useCallback((event: ChangeEvent<HTMLInputElement>) => {
@@ -49,10 +51,10 @@ const Header: FC = () => {
         {isLogged ? (
           <>
             <div className={css.content}>
-              <img src={cubeImage} alt="Куб" />
-              <img src={heartImage} alt="Сердце" />
-              <img src={bellImage} alt="Колокольчик" />
-              <img src={cartImage} alt="Корзина" />
+              <BtnOrders />
+              <BtnFavorites count={idInFavorites.length} />
+              <BtnNotifications />
+              <BtnCart />
               <UserDropMenu />
             </div>
           </>
