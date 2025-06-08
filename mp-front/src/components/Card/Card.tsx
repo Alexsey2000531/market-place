@@ -2,18 +2,24 @@ import type { ProductDetails } from '../../pages/types.ts'
 import { Button, Card, Image, Text } from '@chakra-ui/react'
 import HeartEmpty from '../../img/heart-empty.png'
 import css from './index.module.css'
+import { Link } from 'react-router-dom'
+import type { FC } from 'react'
 
-const ProductCard = ({ title, description, imgSrc, discountedTotal, id }: ProductDetails) => {
+const ProductCard: FC<ProductDetails> = ({ title, description, imgSrc, discountedTotal, id }) => {
   return (
     <Card.Root width={'230px'} overflow="hidden" key={id}>
       <div className={css.heart}>
         <img src={HeartEmpty} alt="heart" />
       </div>
-      <Image src={imgSrc} />
+      <Link to={`/product/${id}`}>
+        <Image src={imgSrc} />
+      </Link>
       <Card.Body gap="4">
-        <Card.Title>{title}</Card.Title>
+        <Link to={`/product/${id}`} className={css.title}>
+          <Card.Title>{title}</Card.Title>
+        </Link>
         <Card.Description>{description}</Card.Description>
-        <Text textStyle="2xl" fontWeight="medium" letterSpacing="tight" mt="2">
+        <Text className={css.price} textStyle="2xl" fontWeight="medium" letterSpacing="tight" mt="2">
           {+discountedTotal.toFixed(1)} ₽
         </Text>
       </Card.Body>

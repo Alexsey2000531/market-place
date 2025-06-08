@@ -1,10 +1,100 @@
-.container {
+.header {
       display: flex;
+      justify-content: space-between;
       align-items: center;
       padding: 14px 20px;
+      border-radius: 6px;
       transition: margin 0.2s ease-out;
-      background-color: green;
-      height: 60px;
+      background-color: #fff;
+      min-height: 52px;
       z-index: 10;
-      color: #fff;
+}
+
+.leftSide {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-shrink: 0;
+      margin-right: 20px;
+}
+
+.button {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border-radius: 6px;
+      background: rgb(105, 105, 228);
+      cursor: pointer;
+}
+
+.button>span {
+      color: white;
+}
+
+.burger {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 20px;
+      height: 20px;
+      padding: 4px 0;
+      margin-right: 8px;
+}
+
+.burger>span {
+      position: relative;
+      display: block;
+      width: 16px;
+      height: 2px;
+      margin: 0 1px;
+      background-color: #fff;
+}
+
+.searchWrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-width: 750px;
+      width: 100%;
+      border: 2px solid rgb(134, 134, 216);
+      border-radius: 4px;
+      padding: 0 20px;
+}
+
+.searchWrapper>input {
+      width: 100%;
+      outline: none;
+      font-size: 16px;
+      line-height: 40px;
+}
+
+.searchWrapper>img {
+      cursor: pointer;
+      width: 20px;
+      height: 20px;
+}
+
+.rightSide {
+      display: flex;
+      gap: 20px;
+}
+
+.content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+}
+
+.content>img {
+      position: relative;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+}
+
+.UserProfileWrapper>div {
+      cursor: pointer;
+      line-height: 1.8;
 }

@@ -8,9 +8,17 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      z-index: 999;
+      z-index: 1;
 }
 
 .heart>img {
       pointer-events: none;
+}
+
+.title:hover {
+      color: blue
+}
+
+.price {
+      color: rgb(107, 107, 255);
 }
