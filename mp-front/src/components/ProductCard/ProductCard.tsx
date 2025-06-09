@@ -18,7 +18,7 @@ const ProductCard: FC<ProductDetails> = ({
   isLiked,
   hideLikes = false,
 }) => {
-  const dispatch = useDispatch<any>()
+  const dispatch = useDispatch()
   const location = useLocation()
 
   const handleFavorites = useCallback(

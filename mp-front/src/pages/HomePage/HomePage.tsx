@@ -5,9 +5,17 @@ import { products } from '../products.ts'
 import ProductCard from '../../components/ProductCard'
 import { useSelector } from 'react-redux'
 import { selectFavorites } from '../../features/Favorites/selectors.ts'
+import { selectSearch } from '../../features/SearchQuery/selectors.ts'
 
 const HomePage: React.FC = () => {
   const idInFavorites = useSelector(selectFavorites)
+  const searchQuery = useSelector(selectSearch)
+
+  const filteredProducts = products.filter(
+    (product) =>
+      product.title.toLowerCase().includes(searchQuery) || product.description.toLowerCase().includes(searchQuery)
+  )
+
   return (
     <>
       <Title>Главная - MarketPlace</Title>
@@ -15,7 +23,7 @@ const HomePage: React.FC = () => {
         <div className={css.productGroup}>
           <h2>Рекомендуемые товары</h2>
           <div className={css.productGroupContainer}>
-            {products.map((product) => (
+            {filteredProducts.map((product) => (
               <ProductCard
                 key={product.id}
                 {...product}

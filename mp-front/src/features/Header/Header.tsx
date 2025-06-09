@@ -1,5 +1,5 @@
-import { useCallback, useState, type ChangeEvent, type FC } from 'react'
-import { useSelector } from 'react-redux'
+import { useCallback, type ChangeEvent, type FC } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import { paths } from '../../routes/helpers'
@@ -12,15 +12,22 @@ import { selectFavorites } from '../Favorites/selectors'
 import BtnOrders from './components/BtnOrders'
 import BtnNotifications from './components/BtnNotifications'
 import BtnCart from './components/BtnCart'
+import { selectSearch } from '../SearchQuery/selectors'
+import { setSearchQuery } from '../SearchQuery/reducer'
+import type { Dispatch } from '../../store/types'
 
 const Header: FC = () => {
+  const dispatch = useDispatch<Dispatch>()
   const isLogged = useSelector(selectIsLogged)
+  const searchQuery = useSelector(selectSearch)
   const idInFavorites = useSelector(selectFavorites)
-  const [searchInput, setSearchInput] = useState<string>('')
 
-  const changeSearchInput = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    setSearchInput(event.target.value)
-  }, [])
+  const changeSearchInput = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      return dispatch(setSearchQuery(event.target.value))
+    },
+    [dispatch]
+  )
 
   return (
     <div className={css.header}>
@@ -38,7 +45,7 @@ const Header: FC = () => {
 
         <div className={css.searchWrapper}>
           <input
-            value={searchInput}
+            value={searchQuery || ''}
             onChange={(event) => changeSearchInput(event)}
             type="text"
             placeholder="Поиск товаров"
