@@ -12,15 +12,17 @@ import { selectFavorites } from '../Favorites/selectors'
 import BtnOrders from './components/BtnOrders'
 import BtnNotifications from './components/BtnNotifications'
 import BtnCart from './components/BtnCart'
-import { selectSearch } from '../SearchQuery/selectors'
-import { setSearchQuery } from '../SearchQuery/reducer'
+import { selectSearch } from '../slices/SearchQuery/selectors'
+import { setSearchQuery } from '../slices/SearchQuery/reducer'
 import type { Dispatch } from '../../store/types'
+import { selectCart } from '../slices/Cart/selectors'
 
 const Header: FC = () => {
   const dispatch = useDispatch<Dispatch>()
   const isLogged = useSelector(selectIsLogged)
   const searchQuery = useSelector(selectSearch)
   const idInFavorites = useSelector(selectFavorites)
+  const cartItems = useSelector(selectCart)
 
   const changeSearchInput = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
@@ -61,7 +63,7 @@ const Header: FC = () => {
               <BtnOrders />
               <BtnFavorites count={idInFavorites.length} />
               <BtnNotifications />
-              <BtnCart />
+              <BtnCart count={cartItems.length} />
               <UserDropMenu />
             </div>
           </>

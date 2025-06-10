@@ -3,6 +3,7 @@ export const pathsPublic: { [key: string]: string } = {
   productDetail: '/product/:id',
   login: '/login',
   favorites: '/favorites',
+  cart: '/cart',
 }
 
 export const pathsPrivate: { [key: string]: string } = {

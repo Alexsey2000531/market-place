@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 
 import { paths } from '../../routes/helpers'
 import DropdownPanel from '../../components/DropdownPanel'
-import { selectUserData } from '../../features/UserData/selectors.ts'
+import { selectUserData } from '../slices/UserData/selectors.ts'
 import UserAvatar from './UserAvatar/UserAvatar'
 import css from './index.module.css'
 

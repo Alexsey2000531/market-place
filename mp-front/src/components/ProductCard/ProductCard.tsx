@@ -8,6 +8,7 @@ import { useCallback, useMemo, type FC, type MouseEvent } from 'react'
 import { addToFavorites, removeToFavorites } from '../../features/Favorites/reducer.ts'
 import { useDispatch } from 'react-redux'
 import { paths } from '../../routes/helpers.ts'
+import { addToCart, removeToCart } from '../../features/slices/Cart/reducer.ts'
 
 const ProductCard: FC<ProductDetails> = ({
   title,
@@ -37,7 +38,24 @@ const ProductCard: FC<ProductDetails> = ({
     [dispatch]
   )
 
+  const addCartItem = useCallback(
+    (event: MouseEvent<HTMLElement>) => {
+      const { productId } = event.currentTarget.dataset
+      dispatch(addToCart(+productId!))
+    },
+    [dispatch]
+  )
+
+  const removeCartItem = useCallback(
+    (event: MouseEvent<HTMLElement>) => {
+      const { productId } = event.currentTarget.dataset
+      dispatch(removeToCart(+productId!))
+    },
+    [dispatch]
+  )
+
   const isFavoritesPage = useMemo(() => location.pathname === paths.favorites, [location.pathname])
+  const isCartItemsPage = useMemo(() => location.pathname === paths.cart, [location.pathname])
 
   return (
     <Card.Root width={'230px'} overflow="hidden" key={id}>
@@ -60,15 +78,22 @@ const ProductCard: FC<ProductDetails> = ({
         </Text>
       </Card.Body>
       <Card.Footer gap="2">
-        <Button style={{ margin: 'auto', background: 'blue' }} variant="solid">
-          В корзину
-        </Button>
-        {isFavoritesPage && (
+        {!isCartItemsPage && (
+          <Button
+            data-product-id={id}
+            onClick={addCartItem}
+            style={{ margin: 'auto', background: 'blue' }}
+            variant="solid"
+          >
+            В корзину
+          </Button>
+        )}
+        {(isFavoritesPage || isCartItemsPage) && (
           <Button
             style={{ margin: 'auto', background: 'red' }}
             variant="solid"
             data-product-id={id}
-            onClick={removeFavorite}
+            onClick={isCartItemsPage ? removeCartItem : removeFavorite}
           >
             Удалить
           </Button>

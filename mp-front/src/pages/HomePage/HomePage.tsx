@@ -5,7 +5,7 @@ import { products } from '../products.ts'
 import ProductCard from '../../components/ProductCard'
 import { useSelector } from 'react-redux'
 import { selectFavorites } from '../../features/Favorites/selectors.ts'
-import { selectSearch } from '../../features/SearchQuery/selectors.ts'
+import { selectSearch } from '../../features/slices/SearchQuery/selectors.ts'
 
 const HomePage: React.FC = () => {
   const idInFavorites = useSelector(selectFavorites)

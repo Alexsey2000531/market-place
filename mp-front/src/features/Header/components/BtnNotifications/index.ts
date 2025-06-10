@@ -1,1 +1,1 @@
-export {default} from './BtnNotifications.tsx'
+export { default } from './BtnNotifications.tsx'

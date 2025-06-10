@@ -7,7 +7,9 @@ const addToFavoritesAction = createAction<number>('FAVORITES/add')
 const removeToFavoritesAction = createAction<number>('FAVORITES/remove')
 
 const favoritesReducer = createReducer(initialState, (builder) => {
-  builder.addCase(addToFavoritesAction, (state: any, action: PayloadAction<number>) => [...state, action.payload])
+  builder.addCase(addToFavoritesAction, (state: any, action: PayloadAction<number>) => {
+    return Array.from(new Set([...state, action.payload]))
+  })
 
   builder.addCase(removeToFavoritesAction, (state: any, action: PayloadAction<number>) =>
     state.filter((favoriteId: number) => favoriteId !== action.payload)

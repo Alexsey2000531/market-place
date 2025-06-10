@@ -1,7 +1,7 @@
 import { createAction, createReducer } from '@reduxjs/toolkit'
 
 import type { UserData } from './types'
-import type { AppThunk } from '../../store/types'
+import type { AppThunk } from '../../../store/types'
 
 const initialState: UserData = {
   id: null,

@@ -1,6 +1,6 @@
 import { createAction, createReducer } from '@reduxjs/toolkit'
 import type { SearchQuery } from './types'
-import type { Dispatch } from '../../store/types'
+import type { Dispatch } from '../../../store/types'
 
 const initialState: SearchQuery = {
   searchQuery: '',

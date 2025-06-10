@@ -10,8 +10,8 @@ type BtnProps = {
 const BtnCart: FC<BtnProps> = ({ count }: BtnProps) => {
   return (
     <div className={css.wrapper}>
-      {count && <span className={css.counter}>{count}</span>}
-      <Link to={'/'} className={css.link}>
+      <span className={css.counter}>{count}</span>
+      <Link to={'/cart'} className={css.link}>
         <img src={cubeImage} alt="Корзина" />
       </Link>
     </div>

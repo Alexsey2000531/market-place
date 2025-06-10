@@ -6,7 +6,8 @@ import { checkPathMatch, paths } from './helpers'
 const FavoritesPage = lazy(() => import('../pages/FavoritesPage'))
 const AccountSettingsPage = lazy(() => import('../pages/AccountSettingsPage'))
 const HomePage = lazy(() => import('../pages/HomePage'))
-const ProductDetailPage = lazy(() => import('../pages/ProductDetailPage/ProductDetailPage.tsx'))
+const ProductDetailPage = lazy(() => import('../pages/ProductDetailPage/ProductDetailPage'))
+const CartItemsPage = lazy(() => import('../pages/CartItemsPage/CartItemsPage'))
 
 const PrivateRoutes: FC = () => {
   const location = useLocation()
@@ -20,6 +21,7 @@ const PrivateRoutes: FC = () => {
       <Route path={'*'} element={!isMatch && <Navigate to={paths.home} />} />
       <Route path={paths.productDetail} element={<ProductDetailPage />} />
       <Route path={paths.favorites} element={<FavoritesPage />} />
+      <Route path={paths.cart} element={<CartItemsPage />} />
     </Routes>
   )
 }
