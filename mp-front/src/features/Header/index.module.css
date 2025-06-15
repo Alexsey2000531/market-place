@@ -5,7 +5,7 @@
       padding: 14px 20px;
       border-radius: 6px;
       transition: margin 0.2s ease-out;
-      background-color: #fff;
+      background-color: var(--grey-color);
       min-height: 52px;
       z-index: 10;
 }
@@ -24,12 +24,12 @@
       align-items: center;
       padding: 10px;
       border-radius: 6px;
-      background: rgb(105, 105, 228);
+      background: var(--slateBlue-color);
       cursor: pointer;
 }
 
 .button>span {
-      color: white;
+      color: var(--white-color);
 }
 
 .burger {
@@ -48,7 +48,7 @@
       width: 16px;
       height: 2px;
       margin: 0 1px;
-      background-color: #fff;
+      background-color: var(--grey-color);
 }
 
 .searchWrapper {
@@ -57,7 +57,7 @@
       align-items: center;
       min-width: 750px;
       width: 100%;
-      border: 2px solid rgb(134, 134, 216);
+      border: 2px solid var(--slateBlue-color);
       border-radius: 4px;
       padding: 0 20px;
 }

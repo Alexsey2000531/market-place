@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { selectCart } from '../../features/slices/Cart/selectors'
+import { selectCart } from '../../features/reducers/Cart/selectors'
 import { useMemo, type FC } from 'react'
 import { Title } from 'react-head'
 import css from './index.module.css'

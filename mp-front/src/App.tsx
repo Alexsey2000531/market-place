@@ -6,7 +6,7 @@ import Header from './features/Header'
 import './main.css'
 import Footer from './components/Footer/Footer'
 import { useSelector } from 'react-redux'
-import { selectIsLogged } from './features/App/selector'
+import { selectIsLogged } from './features/reducers/App/selector'
 
 const App = () => {
   const isLogged = useSelector(selectIsLogged)

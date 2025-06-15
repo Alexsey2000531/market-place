@@ -1,6 +1,6 @@
 import { createSlice, type Dispatch } from '@reduxjs/toolkit'
 
-import type { AppThunk, Reducer } from '../../store/types'
+import type { AppThunk, Reducer } from '../../../store/types'
 import type { AppStore } from './types'
 
 const initialState: AppStore = {

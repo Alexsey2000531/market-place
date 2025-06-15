@@ -1,3 +1,13 @@
+:root {
+      --text-color: black;
+      --grey-color: #fff;
+      --blue-color: blue;
+      --white-color: white;
+      --red-color: red;
+      --slateBlue-color: #5e5ecb;
+      --capriBlue-color: #2a5885;
+}
+
 body {
       margin: 0;
       font-family: 'Montserrat', sans-serif;
@@ -49,11 +59,11 @@ h2 {
 }
 
 h3 {
-      font-size: 18;
+      font-size: 18px;
 }
 
 h4 {
-      font-size: 16;
+      font-size: 16px;
 }
 
 p,

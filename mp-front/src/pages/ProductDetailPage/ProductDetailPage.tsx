@@ -1,19 +1,30 @@
 import { Title } from 'react-head'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectFavorites } from '../../features/Favorites/selectors'
+import { selectFavorites } from '../../features/reducers/Favorites/selectors'
 import { useParams } from 'react-router-dom'
 import { products } from '../products'
 import css from './index.module.css'
 import { useCallback, useEffect, useMemo, useState, type MouseEvent } from 'react'
-import { addToFavorites, removeToFavorites } from '../../features/Favorites/reducer'
+import { addToFavorites, removeToFavorites } from '../../features/reducers/Favorites/reducer'
 import heartEmpty from './img/heart-empty.png'
 import heartFill from './img/heart-fill.png'
+import type { ProductDetails } from '../types'
+
+const defaultProductDetail: ProductDetails = {
+  id: 0,
+  imgSrc: '',
+  title: '',
+  isLiked: false,
+  description: '',
+  discountedTotal: 0,
+  hideLikes: false,
+}
 
 const ProductDetailPage = () => {
   const params = useParams()
   const productId = Number(params.id)
   const dispatch = useDispatch()
-  const [productDetail, setProductDetail] = useState<any>(null)
+  const [productDetail, setProductDetail] = useState(defaultProductDetail)
 
   useEffect(() => {
     const found = products.find((product) => product.id === productId)

@@ -5,10 +5,10 @@ import HeartFill from '../../img/heart-fill.png'
 import css from './index.module.css'
 import { Link, useLocation } from 'react-router-dom'
 import { useCallback, useMemo, type FC, type MouseEvent } from 'react'
-import { addToFavorites, removeToFavorites } from '../../features/Favorites/reducer.ts'
+import { addToFavorites, removeToFavorites } from '../../features/reducers/Favorites/reducer.ts'
 import { useDispatch } from 'react-redux'
 import { paths } from '../../routes/helpers.ts'
-import { addToCart, removeToCart } from '../../features/slices/Cart/reducer.ts'
+import { addToCart, removeToCart } from '../../features/reducers/Cart/reducer.ts'
 
 const ProductCard: FC<ProductDetails> = ({
   title,

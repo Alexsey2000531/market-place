@@ -27,10 +27,10 @@
 }
 
 .description {
-  max-width: 350px;
+      max-width: 350px;
 }
 
 .price {
       font-size: 26px;
-      color: rgb(107, 107, 255);
+      color: var(--slateBlue-color);
 }

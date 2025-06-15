@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 import { useSelector } from 'react-redux'
-import { selectFavorites } from '../../features/Favorites/selectors'
+import { selectFavorites } from '../../features/reducers/Favorites/selectors'
 import { Title } from 'react-head'
 import css from './index.module.css'
 import { products } from '../products'

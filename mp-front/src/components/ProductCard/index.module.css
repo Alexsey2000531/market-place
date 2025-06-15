@@ -16,11 +16,11 @@
 }
 
 .title:hover {
-      color: blue
+      color: var(--blue-color);
 }
 
 .price {
-      color: rgb(107, 107, 255);
+      color: var(--slateBlue-color);
 }
 
 .likeWrapper {
