@@ -4,19 +4,12 @@ import type { UserData } from './types'
 import type { AppThunk } from '../../../store/types'
 
 const initialState: UserData = {
-  id: null,
-  login: null,
+  name: null,
   email: null,
-  phone: null,
-  nameFirst: null,
-  nameLast: null,
-  namePatronymic: null,
-  displayName: null,
-  birthDate: null,
-  gender: null,
+  password: null,
 }
 
-const setUserDataAction = createAction<UserData>('USERDATA/set')
+export const setUserDataAction = createAction<UserData>('USERDATA/set')
 
 const userDataReducer = createReducer(initialState, (builder) => {
   builder.addCase(setUserDataAction, (_, action) => action.payload)

@@ -1,24 +1,26 @@
-import { useCallback, type FC } from 'react'
-import { useSelector } from 'react-redux'
-import { NavLink, useNavigate } from 'react-router-dom'
-
-import { paths } from '../../routes/helpers'
+import { type FC } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 import DropdownPanel from '../../components/DropdownPanel'
 import { selectUserData } from '../reducers/UserData/selectors.ts'
-import UserAvatar from './UserAvatar/UserAvatar'
+import UserAvatar from './UserAvatar'
 import css from './index.module.css'
+import { setIsLogged } from '../reducers/App/reducer.ts'
 
 const UserDropMenu: FC = () => {
-  const navigate = useNavigate()
-  const { nameFirst, nameLast, displayName } = useSelector(selectUserData)
-  const handleLogout = useCallback(() => navigate(paths.logout), [navigate])
+  const { name } = useSelector(selectUserData)
+  const dispatch = useDispatch<any>()
+
+  const handleLogOut = () => {
+    dispatch(setIsLogged(false))
+  }
 
   return (
     <>
       <DropdownPanel toggler={(props: any) => <UserAvatar onClick={props.onClick} />}>
         <div className={css.UserProfileWrapper}>
           <div>
-            <strong>{displayName || nameFirst + ' ' + nameLast}</strong>
+            <strong>{name}</strong>
           </div>
           <hr />
           <NavLink to={'#'}>
@@ -41,7 +43,7 @@ const UserDropMenu: FC = () => {
           </NavLink>
 
           <hr />
-          <div onClick={handleLogout}>Выйти</div>
+          <div onClick={handleLogOut}>Выйти</div>
         </div>
       </DropdownPanel>
     </>

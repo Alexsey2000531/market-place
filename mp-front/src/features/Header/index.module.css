@@ -98,3 +98,7 @@
       height: 20px;
       cursor: pointer;
 }
+
+.active {
+      color: var(--slateBlue-color);
+}

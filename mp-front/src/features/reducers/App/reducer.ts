@@ -4,7 +4,7 @@ import type { AppThunk, Reducer } from '../../../store/types'
 import type { AppStore } from './types'
 
 const initialState: AppStore = {
-  isLogged: true,
+  isLogged: false,
   isAppLoading: false,
 }
 
@@ -25,7 +25,7 @@ const appSlice = createSlice({
   },
 })
 
-const { isLogged: setIsLoggedAction, isAppLoading: setIsAppLoadingAction } = appSlice.actions
+export const { isLogged: setIsLoggedAction, isAppLoading: setIsAppLoadingAction } = appSlice.actions
 
 export const setIsLogged =
   (isLogged: boolean): AppThunk =>

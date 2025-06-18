@@ -1,0 +1,7 @@
+.formItems {
+      max-height: 100%;
+}
+
+.formItems>*:not(:first-child) {
+      margin-top: 12px;
+}

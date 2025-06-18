@@ -9,6 +9,8 @@ import { addToFavorites, removeToFavorites } from '../../features/reducers/Favor
 import heartEmpty from './img/heart-empty.png'
 import heartFill from './img/heart-fill.png'
 import type { ProductDetails } from '../types'
+import { Button } from '@chakra-ui/react'
+import { addToCart } from '../../features/reducers/Cart/reducer'
 
 const defaultProductDetail: ProductDetails = {
   id: 0,
@@ -48,6 +50,14 @@ const ProductDetailPage = () => {
     [dispatch, idInFavorites]
   )
 
+  const addCartItem = useCallback(
+    (event: MouseEvent<HTMLButtonElement>) => {
+      const { productId } = event.currentTarget.dataset
+      dispatch(addToCart(+productId!))
+    },
+    [dispatch]
+  )
+
   if (!productDetail) {
     return null
   }
@@ -69,6 +79,9 @@ const ProductDetailPage = () => {
             <h1 className={css.title}>{title}</h1>
             <p className={css.description}>{description}</p>
             <span className={css.price}>{discountedTotal} ₽</span>
+            <Button data-product-id={id} onClick={addCartItem} style={{ background: 'blue' }} variant="solid">
+              В корзину
+            </Button>
           </div>
         </div>
       </div>

@@ -3,9 +3,10 @@ import { Route, Navigate, Routes, useLocation } from 'react-router-dom'
 
 import { checkPathMatch, paths } from './helpers'
 
-const HomePage = lazy(() => import('../pages/HomePage/HomePage.tsx'))
-const FavoritesPage = lazy(() => import('../pages/FavoritesPage'))
-const ProductDetailPage = lazy(() => import('../pages/ProductDetailPage/ProductDetailPage.tsx'))
+const HomePage = lazy(() => import('../pages/HomePage'))
+const LoginPage = lazy(() => import('../pages/LoginPage'))
+const RegisterPage = lazy(() => import('../pages/RegisterPage'))
+const ErrorPage = lazy(() => import('../pages/ErrorPage'))
 
 const PublicRoutes: FC = () => {
   const location = useLocation()
@@ -15,8 +16,9 @@ const PublicRoutes: FC = () => {
   return (
     <Routes>
       <Route path={paths.home} element={<HomePage />} />
-      <Route path={paths.productDetail} element={<ProductDetailPage />} />
-      <Route path={paths.favorites} element={<FavoritesPage />} />
+      <Route path={paths.login} element={<LoginPage />} />
+      <Route path={paths.register} element={<RegisterPage />} />
+      <Route path={paths.error} element={<ErrorPage />} />
       <Route path={'*'} element={!isMatch && <Navigate to={paths.home} />} />
     </Routes>
   )

@@ -1,6 +1,6 @@
 import { useCallback, type ChangeEvent, type FC } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 import { paths } from '../../routes/helpers'
 import { selectIsLogged } from '../reducers/App/selector'
@@ -68,7 +68,14 @@ const Header: FC = () => {
             </div>
           </>
         ) : (
-          <Link to={paths.login}>&nbsp;&nbsp;&nbsp; Войти</Link>
+          <div className={css['auth']}>
+            <NavLink to={paths.login} className={({ isActive }) => (isActive ? css['active'] : '')}>
+              &nbsp;&nbsp;&nbsp; Войти
+            </NavLink>
+            <NavLink to={paths.register} className={({ isActive }) => (isActive ? css['active'] : '')}>
+              &nbsp;&nbsp;&nbsp; Регистрация
+            </NavLink>
+          </div>
         )}
       </div>
     </div>

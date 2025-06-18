@@ -6,9 +6,10 @@ import css from './index.module.css'
 import { Link, useLocation } from 'react-router-dom'
 import { useCallback, useMemo, type FC, type MouseEvent } from 'react'
 import { addToFavorites, removeToFavorites } from '../../features/reducers/Favorites/reducer.ts'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { paths } from '../../routes/helpers.ts'
 import { addToCart, removeToCart } from '../../features/reducers/Cart/reducer.ts'
+import { selectIsLogged } from '../../features/reducers/App/selector.ts'
 
 const ProductCard: FC<ProductDetails> = ({
   title,
@@ -21,6 +22,7 @@ const ProductCard: FC<ProductDetails> = ({
 }) => {
   const dispatch = useDispatch()
   const location = useLocation()
+  const isLogged = useSelector(selectIsLogged)
 
   const handleFavorites = useCallback(
     (event: MouseEvent<HTMLElement>) => {
@@ -57,6 +59,8 @@ const ProductCard: FC<ProductDetails> = ({
   const isFavoritesPage = useMemo(() => location.pathname === paths.favorites, [location.pathname])
   const isCartItemsPage = useMemo(() => location.pathname === paths.cart, [location.pathname])
 
+  const path = isLogged ? `/product/${id}` : paths.error
+
   return (
     <Card.Root width={'230px'} overflow="hidden" key={id}>
       {!hideLikes && (
@@ -65,7 +69,7 @@ const ProductCard: FC<ProductDetails> = ({
         </div>
       )}
 
-      <Link to={`/product/${id}`}>
+      <Link to={path}>
         <Image src={imgSrc} />
       </Link>
       <Card.Body gap="4">
