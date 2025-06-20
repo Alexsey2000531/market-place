@@ -23,8 +23,10 @@ const RegisterPage: FC = () => {
     onSubmit: (values, { resetForm }) => {
       dispatch(setUserData(values))
       dispatch(setIsLogged(true))
-      navigate(paths.home)
+
+      localStorage.setItem('userData', JSON.stringify(values))
       resetForm()
+      navigate(paths.home)
     },
   })
 

@@ -16,15 +16,26 @@ const LoginPage: FC = () => {
   const navigate = useNavigate()
   const formik = useFormik({
     initialValues: {
-      name: '',
       email: '',
       password: '',
     },
     onSubmit: (values, { resetForm }) => {
-      dispatch(setUserData(values))
-      dispatch(setIsLogged(true))
-      navigate(paths.home)
-      resetForm()
+      const userData = localStorage.getItem('userData')
+      if (userData) {
+        const parsedData = JSON.parse(userData)
+
+        if (parsedData.email === values.email && parsedData.password === values.password) {
+          dispatch(setUserData(parsedData))
+          dispatch(setIsLogged(true))
+          resetForm()
+          navigate(paths.home)
+        } else {
+          alert('Неверный e-mail или пароль!')
+        }
+      } else {
+        alert('Такого пользователя нет.Авторизируйтесь!')
+        navigate(paths.register)
+      }
     },
   })
 
@@ -33,7 +44,6 @@ const LoginPage: FC = () => {
       <form className={css['form']} onSubmit={formik.handleSubmit}>
         <h1 className={css['title']}>Вход</h1>
         <FormItems>
-          <Input name="name" label="Имя" formik={formik} />
           <Input name="email" label="E-mail" formik={formik} />
           <Input name="password" label="Пароль" type="password" formik={formik} />
           <Button color="green">Войти</Button>
