@@ -21,20 +21,22 @@ const LoginPage: FC = () => {
     },
     onSubmit: (values, { resetForm }) => {
       const userData = localStorage.getItem('userData')
-      if (userData) {
-        const parsedData = JSON.parse(userData)
 
-        if (parsedData.email === values.email && parsedData.password === values.password) {
-          dispatch(setUserData(parsedData))
-          dispatch(setIsLogged(true))
-          resetForm()
-          navigate(paths.home)
-        } else {
-          alert('Неверный e-mail или пароль!')
-        }
-      } else {
-        alert('Такого пользователя нет.Авторизируйтесь!')
+      if (!userData) {
+        alert('Такого пользователя нет. Авторизируйтесь!')
         navigate(paths.register)
+        return
+      }
+
+      const parsedData = JSON.parse(userData)
+
+      if (parsedData.email === values.email && parsedData.password === values.password) {
+        dispatch(setUserData(parsedData))
+        dispatch(setIsLogged(true))
+        resetForm()
+        navigate(paths.home)
+      } else {
+        alert('Неверный e-mail или пароль!')
       }
     },
   })
