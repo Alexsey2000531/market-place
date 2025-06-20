@@ -4,6 +4,7 @@ import { useMemo, type FC } from 'react'
 import { Title } from 'react-head'
 import css from './index.module.css'
 import { products } from '../products'
+import Button from '../../components/Button'
 
 const CartItemsPage: FC = () => {
   const cartItems = useSelector(selectCart)
@@ -37,7 +38,9 @@ const CartItemsPage: FC = () => {
 
               <div className={css.cartTotal}>
                 <span className={css.totalPrice}>Итого: {totalPrice.toFixed(2)} ₽</span>
-                <button className={css.checkoutButton}>Оформить заказ</button>
+                <Button color="green" size="small">
+                  Оформить заказ
+                </Button>
               </div>
             </>
           ) : (

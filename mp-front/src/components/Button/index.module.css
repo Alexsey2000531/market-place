@@ -46,3 +46,27 @@
 .color-blue:active {
       background-color: rgb(21, 21, 107);
 }
+
+.big {
+      width: 100%;
+      padding: 10px 20px;
+      margin-bottom: 14px;
+      color: var(--white-color);
+      border: none;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      position: relative;
+}
+
+.small {
+      width: 250px;
+      padding: 10px 20px;
+      margin-bottom: 14px;
+      color: var(--white-color);
+      border: none;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      position: relative;
+}

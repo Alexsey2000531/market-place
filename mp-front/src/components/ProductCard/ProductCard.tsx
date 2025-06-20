@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { paths } from '../../routes/helpers.ts'
 import { addToCart, removeToCart } from '../../features/reducers/Cart/reducer.ts'
 import { selectIsLogged } from '../../features/reducers/App/selector.ts'
+import type { Dispatch } from '../../store/types.ts'
 
 const ProductCard: FC<ProductDetails> = ({
   title,
@@ -20,7 +21,7 @@ const ProductCard: FC<ProductDetails> = ({
   isLiked,
   hideLikes = false,
 }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<Dispatch>()
   const location = useLocation()
   const isLogged = useSelector(selectIsLogged)
 

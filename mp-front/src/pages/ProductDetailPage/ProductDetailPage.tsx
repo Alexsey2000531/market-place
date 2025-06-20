@@ -11,6 +11,7 @@ import heartFill from './img/heart-fill.png'
 import type { ProductDetails } from '../types'
 import { Button } from '@chakra-ui/react'
 import { addToCart } from '../../features/reducers/Cart/reducer'
+import type { Dispatch } from '../../store/types'
 
 const defaultProductDetail: ProductDetails = {
   id: 0,
@@ -25,7 +26,7 @@ const defaultProductDetail: ProductDetails = {
 const ProductDetailPage = () => {
   const params = useParams()
   const productId = Number(params.id)
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<Dispatch>()
   const [productDetail, setProductDetail] = useState(defaultProductDetail)
 
   useEffect(() => {

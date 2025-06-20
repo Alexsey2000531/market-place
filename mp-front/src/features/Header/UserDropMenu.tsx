@@ -6,10 +6,11 @@ import { selectUserData } from '../reducers/UserData/selectors.ts'
 import UserAvatar from './UserAvatar'
 import css from './index.module.css'
 import { setIsLogged } from '../reducers/App/reducer.ts'
+import type { Dispatch } from '../../store/types.ts'
 
 const UserDropMenu: FC = () => {
   const { name } = useSelector(selectUserData)
-  const dispatch = useDispatch<any>()
+  const dispatch = useDispatch<Dispatch>()
 
   const handleLogOut = () => {
     dispatch(setIsLogged(false))

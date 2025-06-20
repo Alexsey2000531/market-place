@@ -9,9 +9,10 @@ import { useFormik } from 'formik'
 import { setUserData } from '../../features/reducers/UserData/reducer'
 import { useDispatch } from 'react-redux'
 import { setIsLogged } from '../../features/reducers/App/reducer'
+import type { Dispatch } from '../../store/types'
 
 const LoginPage: FC = () => {
-  const dispatch = useDispatch<any>()
+  const dispatch = useDispatch<Dispatch>()
   const navigate = useNavigate()
   const formik = useFormik({
     initialValues: {
