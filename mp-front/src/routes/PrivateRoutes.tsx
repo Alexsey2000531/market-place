@@ -4,7 +4,7 @@ import { Route, Navigate, Routes, useLocation } from 'react-router-dom'
 import { checkPathMatch, paths } from './helpers'
 
 const FavoritesPage = lazy(() => import('../pages/FavoritesPage'))
-const AccountSettingsPage = lazy(() => import('../pages/AccountSettingsPage'))
+const ProfilePage = lazy(() => import('../pages/ProfilePage'))
 const HomePage = lazy(() => import('../pages/HomePage'))
 const CartItemsPage = lazy(() => import('../pages/CartItemsPage'))
 const ProductDetail = lazy(() => import('../pages/ProductDetailPage'))
@@ -17,7 +17,7 @@ const PrivateRoutes: FC = () => {
   return (
     <Routes>
       <Route path={paths.home} element={<HomePage />} />
-      <Route path={paths.accountSettings} element={<AccountSettingsPage />} />
+      <Route path={paths.profile} element={<ProfilePage />} />
       <Route path={paths.productDetail} element={<ProductDetail />} />
       <Route path={'*'} element={!isMatch && <Navigate to={paths.home} />} />
       <Route path={paths.favorites} element={<FavoritesPage />} />

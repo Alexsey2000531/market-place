@@ -18,7 +18,7 @@ const UserDropMenu: FC = () => {
 
   return (
     <>
-      <DropdownPanel toggler={(props: any) => <UserAvatar onClick={props.onClick} />}>
+      <DropdownPanel toggler={(props: any) => <UserAvatar onClick={props.onClick} size="small" />}>
         <div className={css.UserProfileWrapper}>
           <div>
             <strong>{name}</strong>
@@ -27,20 +27,11 @@ const UserDropMenu: FC = () => {
           <NavLink to={'#'}>
             <div>Заказы</div>
           </NavLink>
-          <NavLink to={'#'}>
-            <div>Возвраты</div>
-          </NavLink>
-          <NavLink to={'#'}>
+          <NavLink to={'/favorites'}>
             <div>Избранное</div>
           </NavLink>
-          <NavLink to={'#'}>
-            <div>Справка</div>
-          </NavLink>
-          <NavLink to={'#'}>
-            <div>Поддержка</div>
-          </NavLink>
-          <NavLink to={'#'}>
-            <div>Настройки</div>
+          <NavLink to={'/profile'}>
+            <div>Профиль</div>
           </NavLink>
 
           <hr />

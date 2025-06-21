@@ -9,7 +9,7 @@ export const pathsPrivate: { [key: string]: string } = {
   favorites: '/favorites',
   productDetail: '/product/:id',
   cart: '/cart',
-  accountSettings: '/account-settings',
+  profile: '/profile',
 }
 
 export const paths: { [key: string]: string } = Object.assign({}, pathsPublic, pathsPrivate)

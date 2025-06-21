@@ -4,7 +4,7 @@ import type { FormikProps } from 'formik'
 
 type InputProps = {
   name: string
-  label: string
+  label?: string
   placeholder?: string
   type?: string
   maxWidth?: number

@@ -6,15 +6,13 @@ import FormItems from '../../components/FormItems'
 import Input from '../../components/Input'
 import Button from '../../components/Button'
 import { useFormik } from 'formik'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { setIsLogged } from '../../features/reducers/App/reducer'
 import type { Dispatch } from '../../store/types'
-import { selectUserData } from '../../features/reducers/UserData/selectors'
 
 const LoginPage: FC = () => {
   const dispatch = useDispatch<Dispatch>()
   const navigate = useNavigate()
-  const userData = useSelector(selectUserData)
 
   const formik = useFormik({
     initialValues: {
@@ -22,13 +20,16 @@ const LoginPage: FC = () => {
       password: '',
     },
     onSubmit: (values, { resetForm }) => {
+      const userData = localStorage.getItem('userData')
       if (!userData) {
         alert('Такого пользователя нет. Авторизируйтесь!')
         navigate(paths.register)
         return
       }
 
-      if (userData.email === values.email && userData.password === values.password) {
+      const parsedData = JSON.parse(userData)
+
+      if (parsedData.email === values.email && parsedData.password === values.password) {
         dispatch(setIsLogged(true))
         resetForm()
         navigate(paths.home)
