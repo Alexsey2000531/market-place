@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { paths } from '../../routes/helpers'
 import { setIsLoggedAction } from '../../features/reducers/App/reducer'
-import { setUserDataAction } from '../../features/reducers/UserData/reducer'
+import { updateProfileAction } from '../../features/reducers/UserData/reducer'
 import type { Dispatch } from '../../store/types'
 import { compareSync, hashSync } from 'bcryptjs'
 import { selectUserData } from '../../features/reducers/UserData/selectors'
@@ -28,7 +28,7 @@ const ProfilePage = () => {
     onSubmit: (values) => {
       if (userData.name !== values.name || userData.email !== values.email) {
         const updateUserData = { ...userData, name: values.name, email: values.email }
-        dispatch(setUserDataAction(updateUserData))
+        dispatch(updateProfileAction(updateUserData))
         localStorage.setItem('userData', JSON.stringify(updateUserData))
       }
 
@@ -53,7 +53,7 @@ const ProfilePage = () => {
         const hashedPassword = hashSync(values.newPassword, 10)
         const updateUserData = { ...userData, password: hashedPassword }
 
-        dispatch(setUserDataAction(updateUserData))
+        dispatch(updateProfileAction(updateUserData))
         localStorage.setItem('userData', JSON.stringify(updateUserData))
         alert('Пароль успешно изменён!')
       }

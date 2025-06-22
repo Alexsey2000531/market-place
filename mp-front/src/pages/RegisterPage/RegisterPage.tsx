@@ -6,7 +6,7 @@ import FormItems from '../../components/FormItems'
 import Input from '../../components/Input'
 import Button from '../../components/Button'
 import { useFormik } from 'formik'
-import { setUserData } from '../../features/reducers/UserData/reducer'
+import { registerAction } from '../../features/reducers/UserData/reducer'
 import { useDispatch } from 'react-redux'
 import { setIsLogged } from '../../features/reducers/App/reducer'
 import type { Dispatch } from '../../store/types'
@@ -30,7 +30,7 @@ const RegisterPage: FC = () => {
       const userData = { ...values, password: hashSync(values.password, 10) }
       localStorage.setItem('userData', JSON.stringify(userData))
 
-      dispatch(setUserData(userData))
+      dispatch(registerAction(userData))
       dispatch(setIsLogged(true))
       navigate(paths.home)
     },

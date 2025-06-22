@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux'
 import { setIsLogged } from '../../features/reducers/App/reducer'
 import type { Dispatch } from '../../store/types'
 import { compareSync } from 'bcryptjs'
-import { setUserData } from '../../features/reducers/UserData/reducer'
+import { loginAction } from '../../features/reducers/UserData/reducer'
 
 const LoginPage: FC = () => {
   const dispatch = useDispatch<Dispatch>()
@@ -33,7 +33,7 @@ const LoginPage: FC = () => {
       const isPasswordValid = compareSync(values.password, userData.password)
 
       if (userData.email === values.email && isPasswordValid) {
-        dispatch(setUserData(userData))
+        dispatch(loginAction(userData))
         dispatch(setIsLogged(true))
         sessionStorage.setItem('isLogged', 'true')
         navigate(paths.home)
