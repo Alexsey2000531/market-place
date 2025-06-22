@@ -6,22 +6,57 @@ import FormItems from '../../components/FormItems'
 import { useFormik } from 'formik'
 import UserAvatar from '../../features/Header/UserAvatar'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectUserData } from '../../features/reducers/UserData/selectors'
 import { NavLink } from 'react-router-dom'
 import { paths } from '../../routes/helpers'
 import { setIsLoggedAction } from '../../features/reducers/App/reducer'
+import { setUserDataAction } from '../../features/reducers/UserData/reducer'
+import type { Dispatch } from '../../store/types'
+import { compareSync, hashSync } from 'bcryptjs'
+import { selectUserData } from '../../features/reducers/UserData/selectors'
 
 const ProfilePage = () => {
   const userData = useSelector(selectUserData)
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<Dispatch>()
   const formik = useFormik({
     initialValues: {
       name: userData.name || '',
       email: userData.email || '',
-      password: userData.password || '',
-      oldPassword: '',
+      password: '',
       newPassword: '',
       confirmPassword: '',
+    },
+    onSubmit: (values) => {
+      if (userData.name !== values.name || userData.email !== values.email) {
+        const updateUserData = { ...userData, name: values.name, email: values.email }
+        dispatch(setUserDataAction(updateUserData))
+        localStorage.setItem('userData', JSON.stringify(updateUserData))
+      }
+
+      if (values.password && values.newPassword && values.confirmPassword) {
+        const isCurrentPasswordValid = compareSync(values.password, userData.password)
+
+        if (!isCurrentPasswordValid) {
+          alert('Текущей пароль неверный!')
+          return
+        }
+
+        if (values.newPassword !== values.confirmPassword) {
+          alert('Новый пароль и повторный не свопадают!')
+          return
+        }
+
+        if (values.newPassword.length < 6) {
+          alert('Длина пароля должна быть не менее 6 символов!')
+          return
+        }
+
+        const hashedPassword = hashSync(values.newPassword, 10)
+        const updateUserData = { ...userData, password: hashedPassword }
+
+        dispatch(setUserDataAction(updateUserData))
+        localStorage.setItem('userData', JSON.stringify(updateUserData))
+        alert('Пароль успешно изменён!')
+      }
     },
   })
 
@@ -73,7 +108,7 @@ const ProfilePage = () => {
                   <div className={css['column']}>
                     <div className={css['group']}>
                       <label className={css['label']}>Текущей пароль</label>
-                      <Input name="oldPassword" type="password" formik={formik} />
+                      <Input name="password" type="password" formik={formik} />
                     </div>
                     <div className={css['group']}>
                       <label className={css['label']}>Новый пароль</label>

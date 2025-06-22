@@ -10,6 +10,7 @@ import { setUserData } from '../../features/reducers/UserData/reducer'
 import { useDispatch } from 'react-redux'
 import { setIsLogged } from '../../features/reducers/App/reducer'
 import type { Dispatch } from '../../store/types'
+import { hashSync } from 'bcryptjs'
 
 const RegisterPage: FC = () => {
   const dispatch = useDispatch<Dispatch>()
@@ -20,13 +21,17 @@ const RegisterPage: FC = () => {
       email: '',
       password: '',
     },
-    onSubmit: (values, { resetForm }) => {
-      localStorage.setItem('userData', JSON.stringify(values))
+    onSubmit: (values) => {
+      if (values.password.length < 6) {
+        alert('Пароль должен быть не менее 6 символов!')
+        return
+      }
 
-      dispatch(setUserData(values))
+      const userData = { ...values, password: hashSync(values.password, 10) }
+      localStorage.setItem('userData', JSON.stringify(userData))
+
+      dispatch(setUserData(userData))
       dispatch(setIsLogged(true))
-
-      resetForm()
       navigate(paths.home)
     },
   })

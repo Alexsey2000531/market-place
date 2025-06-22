@@ -6,12 +6,16 @@ import FormItems from '../../components/FormItems'
 import Input from '../../components/Input'
 import Button from '../../components/Button'
 import { useFormik } from 'formik'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setIsLogged } from '../../features/reducers/App/reducer'
 import type { Dispatch } from '../../store/types'
+import { compareSync } from 'bcryptjs'
+import { setUserData } from '../../features/reducers/UserData/reducer'
+import { selectUserData } from '../../features/reducers/UserData/selectors'
 
 const LoginPage: FC = () => {
   const dispatch = useDispatch<Dispatch>()
+  const userData = useSelector(selectUserData)
   const navigate = useNavigate()
 
   const formik = useFormik({
@@ -19,19 +23,19 @@ const LoginPage: FC = () => {
       email: '',
       password: '',
     },
-    onSubmit: (values, { resetForm }) => {
-      const userData = localStorage.getItem('userData')
+    onSubmit: (values) => {
       if (!userData) {
         alert('Такого пользователя нет. Авторизируйтесь!')
         navigate(paths.register)
         return
       }
 
-      const parsedData = JSON.parse(userData)
+      const isPasswordValid = compareSync(values.password, userData.password)
 
-      if (parsedData.email === values.email && parsedData.password === values.password) {
+      if (userData.email === values.email && isPasswordValid) {
+        dispatch(setUserData(userData))
         dispatch(setIsLogged(true))
-        resetForm()
+        sessionStorage.setItem('isLogged', 'true')
         navigate(paths.home)
       } else {
         alert('Неверный e-mail или пароль!')

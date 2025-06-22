@@ -4,9 +4,9 @@ import type { UserData } from './types'
 import type { AppThunk } from '../../../store/types'
 
 const initialState: UserData = {
-  name: null,
-  email: null,
-  password: null,
+  name: '',
+  email: '',
+  password: '',
 }
 
 export const setUserDataAction = createAction<UserData>('USERDATA/set')

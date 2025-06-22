@@ -15,6 +15,7 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@reduxjs/toolkit": "^2.8.2",
+    "bcryptjs": "^3.0.2",
     "classnames": "^2.5.1",
     "formik": "^2.4.6",
     "framer-motion": "^12.16.0",
