@@ -62,7 +62,9 @@ const ProfilePage = () => {
 
   const handleLogOut = () => {
     dispatch(setIsLoggedAction(false))
+    sessionStorage.removeItem('isLogged')
   }
+
   return (
     <>
       <Title> Профиль - MarketPlace</Title>

@@ -6,16 +6,14 @@ import FormItems from '../../components/FormItems'
 import Input from '../../components/Input'
 import Button from '../../components/Button'
 import { useFormik } from 'formik'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { setIsLogged } from '../../features/reducers/App/reducer'
 import type { Dispatch } from '../../store/types'
 import { compareSync } from 'bcryptjs'
 import { setUserData } from '../../features/reducers/UserData/reducer'
-import { selectUserData } from '../../features/reducers/UserData/selectors'
 
 const LoginPage: FC = () => {
   const dispatch = useDispatch<Dispatch>()
-  const userData = useSelector(selectUserData)
   const navigate = useNavigate()
 
   const formik = useFormik({
@@ -24,12 +22,14 @@ const LoginPage: FC = () => {
       password: '',
     },
     onSubmit: (values) => {
-      if (!userData) {
+      const storedData = localStorage.getItem('userData')
+      if (!storedData) {
         alert('Такого пользователя нет. Авторизируйтесь!')
         navigate(paths.register)
         return
       }
 
+      const userData = JSON.parse(storedData)
       const isPasswordValid = compareSync(values.password, userData.password)
 
       if (userData.email === values.email && isPasswordValid) {
