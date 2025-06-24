@@ -1,16 +1,16 @@
 import { Title } from 'react-head'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectFavorites } from '../../features/reducers/Favorites/selectors'
+import { selectFavorites } from '../../features/slices/Favorites/selectors'
 import { useParams } from 'react-router-dom'
 import { products } from '../products'
 import css from './index.module.css'
 import { useCallback, useEffect, useMemo, useState, type MouseEvent } from 'react'
-import { addToFavorites, removeToFavorites } from '../../features/reducers/Favorites/reducer'
+import { addToFavorites, removeToFavorites } from '../../features/slices/Favorites/reducer'
 import heartEmpty from './img/heart-empty.png'
 import heartFill from './img/heart-fill.png'
 import type { ProductDetails } from '../types'
 import { Button } from '@chakra-ui/react'
-import { addToCart } from '../../features/reducers/Cart/reducer'
+import { addAction } from '../../features/slices/Cart/reducer'
 import type { Dispatch } from '../../store/types'
 
 const defaultProductDetail: ProductDetails = {
@@ -54,7 +54,7 @@ const ProductDetailPage = () => {
   const addCartItem = useCallback(
     (event: MouseEvent<HTMLButtonElement>) => {
       const { productId } = event.currentTarget.dataset
-      dispatch(addToCart(+productId!))
+      dispatch(addAction(+productId!))
     },
     [dispatch]
   )

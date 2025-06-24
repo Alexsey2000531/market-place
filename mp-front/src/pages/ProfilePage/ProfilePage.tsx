@@ -8,11 +8,11 @@ import UserAvatar from '../../features/Header/UserAvatar'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { paths } from '../../routes/helpers'
-import { setIsLoggedAction } from '../../features/reducers/App/reducer'
-import { updateProfileAction } from '../../features/reducers/UserData/reducer'
+import { setIsLoggedAction } from '../../features/slices/App/reducer'
+import { updateProfileAction } from '../../features/slices/UserData/reducer'
 import type { Dispatch } from '../../store/types'
 import { compareSync, hashSync } from 'bcryptjs'
-import { selectUserData } from '../../features/reducers/UserData/selectors'
+import { selectUserData } from '../../features/slices/UserData/selectors'
 
 const ProfilePage = () => {
   const userData = useSelector(selectUserData)

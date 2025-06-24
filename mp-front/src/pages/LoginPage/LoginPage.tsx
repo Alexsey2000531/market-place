@@ -7,10 +7,10 @@ import Input from '../../components/Input'
 import Button from '../../components/Button'
 import { useFormik } from 'formik'
 import { useDispatch } from 'react-redux'
-import { setIsLogged } from '../../features/reducers/App/reducer'
+import { setIsLogged } from '../../features/slices/App/reducer'
 import type { Dispatch } from '../../store/types'
 import { compareSync } from 'bcryptjs'
-import { loginAction } from '../../features/reducers/UserData/reducer'
+import { loginAction } from '../../features/slices/UserData/reducer'
 
 const LoginPage: FC = () => {
   const dispatch = useDispatch<Dispatch>()

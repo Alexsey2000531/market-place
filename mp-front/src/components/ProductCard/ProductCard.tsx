@@ -5,12 +5,13 @@ import HeartFill from '../../img/heart-fill.png'
 import css from './index.module.css'
 import { Link, useLocation } from 'react-router-dom'
 import { useCallback, useMemo, type FC, type MouseEvent } from 'react'
-import { addToFavorites, removeToFavorites } from '../../features/reducers/Favorites/reducer.ts'
+import { addToFavorites, removeToFavorites } from '../../features/slices/Favorites/reducer.ts'
 import { useDispatch, useSelector } from 'react-redux'
 import { paths } from '../../routes/helpers.ts'
-import { addToCart, removeToCart } from '../../features/reducers/Cart/reducer.ts'
-import { selectIsLogged } from '../../features/reducers/App/selector.ts'
+import { addAction, removeAction } from '../../features/slices/Cart/reducer.ts'
+import { selectIsLogged } from '../../features/slices/App/selector.ts'
 import type { Dispatch } from '../../store/types.ts'
+import { selectCart } from '../../features/slices/Cart/selectors.ts'
 
 const ProductCard: FC<ProductDetails> = ({
   title,
@@ -22,6 +23,7 @@ const ProductCard: FC<ProductDetails> = ({
   hideLikes = false,
 }) => {
   const dispatch = useDispatch<Dispatch>()
+  const items = useSelector(selectCart)
   const location = useLocation()
   const isLogged = useSelector(selectIsLogged)
 
@@ -44,15 +46,15 @@ const ProductCard: FC<ProductDetails> = ({
   const addCartItem = useCallback(
     (event: MouseEvent<HTMLElement>) => {
       const { productId } = event.currentTarget.dataset
-      dispatch(addToCart(+productId!))
+      dispatch(addAction(+productId!))
     },
-    [dispatch]
+    [dispatch, items]
   )
 
   const removeCartItem = useCallback(
     (event: MouseEvent<HTMLElement>) => {
       const { productId } = event.currentTarget.dataset
-      dispatch(removeToCart(+productId!))
+      dispatch(removeAction(+productId!))
     },
     [dispatch]
   )

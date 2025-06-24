@@ -2,10 +2,10 @@ import { type FC } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import DropdownPanel from '../../components/DropdownPanel'
-import { selectUserData } from '../reducers/UserData/selectors.ts'
+import { selectUserData } from '../slices/UserData/selectors.ts'
 import UserAvatar from './UserAvatar'
 import css from './index.module.css'
-import { setIsLogged } from '../reducers/App/reducer.ts'
+import { setIsLogged } from '../slices/App/reducer.ts'
 import type { Dispatch } from '../../store/types.ts'
 
 const UserDropMenu: FC = () => {

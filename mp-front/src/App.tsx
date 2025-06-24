@@ -6,10 +6,10 @@ import Header from './features/Header'
 import './main.css'
 import Footer from './components/Footer/Footer'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectIsLogged } from './features/reducers/App/selector'
+import { selectIsLogged } from './features/slices/App/selector'
 import type { Dispatch } from './store/types'
-import { setUserData } from './features/reducers/UserData/reducer'
-import { setIsLogged } from './features/reducers/App/reducer'
+import { setUserData } from './features/slices/UserData/reducer'
+import { setIsLogged } from './features/slices/App/reducer'
 
 const App = () => {
   const isLogged = useSelector(selectIsLogged)

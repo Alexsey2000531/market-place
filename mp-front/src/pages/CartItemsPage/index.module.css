@@ -34,7 +34,7 @@
 .cartItemImage {
       width: 80px;
       height: 80px;
-      object-fit: cover;
+      object-fit: contain;
       margin-right: 20px;
       border-radius: 4px;
 }
@@ -73,17 +73,39 @@
       font-weight: bold;
 }
 
-.checkoutButton {
-      padding: 12px 30px;
-      background: #4CAF50;
-      color: var(--white-color);
-      border: none;
-      border-radius: 4px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s;
+.actions {
+      display: flex;
+      gap: 10px;
+      margin-left: auto;
 }
 
-.checkoutButton:hover {
-      background: #45a049;
+.minus {
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      border: 1px solid orangered;
+      border-radius: 50%;
+      cursor: pointer;
+}
+
+.plus {
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      background: orangered;
+      border: 1px solid orangered;
+      border-radius: 50%;
+      cursor: pointer;
+}
+
+.count {
+      color: #000;
+      font-size: 16px;
+      font-style: normal;
+}
+
+.remove {
+      cursor: pointer
 }

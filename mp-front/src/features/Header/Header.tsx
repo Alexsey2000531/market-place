@@ -3,19 +3,18 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
 
 import { paths } from '../../routes/helpers'
-import { selectIsLogged } from '../reducers/App/selector'
+import { selectIsLogged } from '../slices/App/selector'
 import css from './index.module.css'
 import searchLogo from '../../img/search.svg'
 import UserDropMenu from './UserDropMenu'
 import BtnFavorites from './components/BtnFavorites'
-import { selectFavorites } from '../reducers/Favorites/selectors'
+import { selectFavorites } from '../slices/Favorites/selectors'
 import BtnOrders from './components/BtnOrders'
-import BtnNotifications from './components/BtnNotifications'
 import BtnCart from './components/BtnCart'
-import { selectSearch } from '../reducers/SearchQuery/selectors'
-import { setSearchQuery } from '../reducers/SearchQuery/reducer'
+import { selectSearch } from '../slices/SearchQuery/selectors'
+import { SearchQueryAction } from '../slices/SearchQuery/reducer'
 import type { Dispatch } from '../../store/types'
-import { selectCart } from '../reducers/Cart/selectors'
+import { selectCart } from '../slices/Cart/selectors'
 
 const Header: FC = () => {
   const dispatch = useDispatch<Dispatch>()
@@ -26,7 +25,7 @@ const Header: FC = () => {
 
   const changeSearchInput = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
-      return dispatch(setSearchQuery(event.target.value))
+      return dispatch(SearchQueryAction(event.target.value))
     },
     [dispatch]
   )
@@ -62,7 +61,6 @@ const Header: FC = () => {
             <div className={css.content}>
               <BtnOrders />
               <BtnFavorites count={idInFavorites.length} />
-              <BtnNotifications />
               <BtnCart count={cartItems.length} />
               <UserDropMenu />
             </div>
