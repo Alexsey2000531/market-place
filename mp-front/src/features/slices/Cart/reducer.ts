@@ -7,7 +7,6 @@ const loadCartStore = () => {
     return savedCart ? JSON.parse(savedCart) : { items: [] }
   } catch (e) {
     if (e instanceof Error) {
-      console.error(e.message)
       return { items: [] }
     }
   }

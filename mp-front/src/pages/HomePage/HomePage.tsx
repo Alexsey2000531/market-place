@@ -29,7 +29,7 @@ const HomePage: React.FC = () => {
               <ProductCard
                 key={product.id}
                 {...product}
-                isLiked={idInFavorites.includes(product.id)}
+                isLiked={idInFavorites.some((favoritesItem) => favoritesItem.id === product.id)}
                 hideLikes={false}
               />
             ))}

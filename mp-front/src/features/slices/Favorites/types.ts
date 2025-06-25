@@ -1,1 +1,7 @@
-export type Favorites = number[]
+type FavoritesItem = {
+  id: number
+}
+
+export type Favorites = {
+  items: FavoritesItem[]
+}

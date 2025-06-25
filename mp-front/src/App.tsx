@@ -21,7 +21,7 @@ const App = () => {
       dispatch(setUserData(JSON.parse(storedData)))
     }
 
-    const isLoggedUser = sessionStorage.getItem('isLogged') === 'true'
+    const isLoggedUser = localStorage.getItem('isLogged') === 'true'
     if (isLoggedUser) {
       dispatch(setIsLogged(true))
     }

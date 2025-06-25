@@ -17,7 +17,7 @@ const FavoritesPage: FC = () => {
         {idInFavorites.length > 0 ? (
           <div className={css.productGroupContainer}>
             {products
-              .filter((product) => idInFavorites.includes(product.id))
+              .filter((product) => idInFavorites.some((favoritesItem) => favoritesItem.id === product.id))
               .map((product) => (
                 <ProductCard key={product.id} {...product} isLiked={false} hideLikes={true} />
               ))}

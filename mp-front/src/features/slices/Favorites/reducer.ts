@@ -1,22 +1,38 @@
-import { createAction, createReducer, type PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 import type { Favorites } from './types'
 
-const initialState: Favorites = []
+const loadFavoritesStore = () => {
+  try {
+    const savedFavorites = localStorage.getItem('cart')
+    return savedFavorites ? JSON.parse(savedFavorites) : { items: [] }
+  } catch (e) {
+    if (e instanceof Error) {
+      return { items: [] }
+    }
+  }
+}
 
-const addToFavoritesAction = createAction<number>('FAVORITES/add')
-const removeToFavoritesAction = createAction<number>('FAVORITES/remove')
+const initialState: Favorites = loadFavoritesStore()
 
-const favoritesReducer = createReducer(initialState, (builder) => {
-  builder.addCase(addToFavoritesAction, (state: any, action: PayloadAction<number>) => {
-    return Array.from(new Set([...state, action.payload]))
-  })
-
-  builder.addCase(removeToFavoritesAction, (state: any, action: PayloadAction<number>) =>
-    state.filter((favoriteId: number) => favoriteId !== action.payload)
-  )
+const favoritesSlice = createSlice({
+  name: 'favorites',
+  initialState,
+  reducers: {
+    add: (state, action: PayloadAction<number>) => {
+      const existed = state.items.find((item) => item.id === action.payload)
+      if (!existed) {
+        state.items.push({ id: action.payload })
+        return
+      }
+      return
+    },
+    remove: (state, action: PayloadAction<number>) => {
+      state.items = state.items.filter((item) => item.id !== action.payload)
+      return
+    },
+  },
 })
 
-export const addToFavorites = (favoriteId: number) => addToFavoritesAction(favoriteId)
-export const removeToFavorites = (favoriteId: number) => removeToFavoritesAction(favoriteId)
+export const { add: addToFavorites, remove: removeToFavorites } = favoritesSlice.actions
 
-export default favoritesReducer
+export default favoritesSlice.reducer

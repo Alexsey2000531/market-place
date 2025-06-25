@@ -11,7 +11,6 @@ import { paths } from '../../routes/helpers.ts'
 import { addAction, removeAction } from '../../features/slices/Cart/reducer.ts'
 import { selectIsLogged } from '../../features/slices/App/selector.ts'
 import type { Dispatch } from '../../store/types.ts'
-import { selectCart } from '../../features/slices/Cart/selectors.ts'
 
 const ProductCard: FC<ProductDetails> = ({
   title,
@@ -23,7 +22,6 @@ const ProductCard: FC<ProductDetails> = ({
   hideLikes = false,
 }) => {
   const dispatch = useDispatch<Dispatch>()
-  const items = useSelector(selectCart)
   const location = useLocation()
   const isLogged = useSelector(selectIsLogged)
 
@@ -48,7 +46,7 @@ const ProductCard: FC<ProductDetails> = ({
       const { productId } = event.currentTarget.dataset
       dispatch(addAction(+productId!))
     },
-    [dispatch, items]
+    [dispatch]
   )
 
   const removeCartItem = useCallback(

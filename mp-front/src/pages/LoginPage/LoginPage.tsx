@@ -35,7 +35,7 @@ const LoginPage: FC = () => {
       if (userData.email === values.email && isPasswordValid) {
         dispatch(loginAction(userData))
         dispatch(setIsLogged(true))
-        sessionStorage.setItem('isLogged', 'true')
+        localStorage.setItem('isLogged', 'true')
         navigate(paths.home)
       } else {
         alert('Неверный e-mail или пароль!')

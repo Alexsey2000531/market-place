@@ -29,6 +29,7 @@ const RegisterPage: FC = () => {
 
       const userData = { ...values, password: hashSync(values.password, 10) }
       localStorage.setItem('userData', JSON.stringify(userData))
+      localStorage.setItem('isLogged', 'true')
 
       dispatch(registerAction(userData))
       dispatch(setIsLogged(true))

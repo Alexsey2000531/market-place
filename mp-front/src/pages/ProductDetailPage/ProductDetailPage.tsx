@@ -40,15 +40,15 @@ const ProductDetailPage = () => {
   const idInFavorites = useSelector(selectFavorites)
 
   const isLiked = useMemo(() => {
-    return idInFavorites.includes(productDetail?.id)
+    return idInFavorites.some((favoritesItem) => favoritesItem.id === productDetail?.id)
   }, [productDetail, idInFavorites])
 
   const handleFavorites = useCallback(
     (event: MouseEvent<HTMLElement>) => {
       const { productId } = event.currentTarget.dataset
-      dispatch(!idInFavorites.includes(+productId!) ? addToFavorites(+productId!) : removeToFavorites(+productId!))
+      dispatch(!isLiked ? addToFavorites(+productId!) : removeToFavorites(+productId!))
     },
-    [dispatch, idInFavorites]
+    [dispatch, isLiked]
   )
 
   const addCartItem = useCallback(

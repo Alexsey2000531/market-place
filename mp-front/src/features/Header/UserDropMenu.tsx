@@ -14,7 +14,7 @@ const UserDropMenu: FC = () => {
 
   const handleLogOut = () => {
     dispatch(setIsLogged(false))
-    sessionStorage.removeItem('isLogged')
+    localStorage.removeItem('isLogged')
   }
 
   return (
