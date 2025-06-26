@@ -18,42 +18,19 @@
       margin-right: 20px;
 }
 
-.button {
+.logo {
+      font-style: italic;
+      font-weight: 600;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 10px;
-      border-radius: 6px;
-      background: var(--slateBlue-color);
+      gap: 10px;
       cursor: pointer;
-}
-
-.button>span {
-      color: var(--white-color);
-}
-
-.burger {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 20px;
-      height: 20px;
-      padding: 4px 0;
-      margin-right: 8px;
-}
-
-.burger>span {
-      position: relative;
-      display: block;
-      width: 16px;
-      height: 2px;
-      margin: 0 1px;
-      background-color: var(--grey-color);
 }
 
 .searchWrapper {
       display: flex;
       justify-content: space-between;
+      margin-left: 40px;
       align-items: center;
       min-width: 750px;
       width: 100%;
@@ -84,7 +61,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 10px;
+      gap: 15px;
 }
 
 .UserProfileWrapper>div {

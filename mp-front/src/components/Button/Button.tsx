@@ -11,9 +11,10 @@ type ButtonProps = {
   color: ButtonColor
   size?: ButtonSize
   disabled?: boolean
+  onClick?: () => unknown
 }
 
-const Button: FC<ButtonProps> = ({ type = 'submit', children, disabled, color, size = 'big' }) => {
+const Button: FC<ButtonProps> = ({ type = 'submit', children, disabled, color, size = 'big', onClick }) => {
   return (
     <button
       className={cn({
@@ -24,6 +25,7 @@ const Button: FC<ButtonProps> = ({ type = 'submit', children, disabled, color, s
       })}
       type={type}
       disabled={disabled}
+      onClick={onClick}
     >
       <span className={css['text']}>{children}</span>
     </button>

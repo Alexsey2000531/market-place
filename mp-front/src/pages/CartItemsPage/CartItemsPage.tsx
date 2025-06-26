@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { selectCart } from '../../features/slices/Cart/selectors'
-import { useMemo, type FC } from 'react'
+import { useMemo, useState, type FC } from 'react'
 import { Title } from 'react-head'
 import css from './index.module.css'
 import { products } from '../products'
@@ -9,9 +9,11 @@ import plusImage from './img/plus.png'
 import minusImage from './img/minus.png'
 import deleteImage from './img/delete.png'
 import type { Dispatch } from '../../store/types'
-import { addAction, removeAction, removeItemAction } from '../../features/slices/Cart/reducer'
+import { addAction, clearCartAction, removeAction, removeItemAction } from '../../features/slices/Cart/reducer'
+import Modal from '../../components/Modal'
 
 const CartItemsPage: FC = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false)
   const cartItems = useSelector(selectCart)
   const dispatch = useDispatch<Dispatch>()
 
@@ -34,6 +36,10 @@ const CartItemsPage: FC = () => {
 
   const removeItem = (id: number) => {
     dispatch(removeItemAction(id))
+  }
+
+  const openModal = () => {
+    setIsOpen(true)
   }
 
   return (
@@ -71,9 +77,16 @@ const CartItemsPage: FC = () => {
 
               <div className={css['cartTotal']}>
                 <span className={css['totalPrice']}>Итого: {totalPrice.toFixed(2)} ₽</span>
-                <Button color="green" size="small">
+                <Button onClick={openModal} color="green" size="small">
                   Оформить заказ
                 </Button>
+                <Modal
+                  isOpen={isOpen}
+                  onClose={() => {
+                    setIsOpen(false)
+                    dispatch(clearCartAction())
+                  }}
+                />
               </div>
             </>
           ) : (

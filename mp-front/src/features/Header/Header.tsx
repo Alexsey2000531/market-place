@@ -6,10 +6,10 @@ import { paths } from '../../routes/helpers'
 import { selectIsLogged } from '../slices/App/selector'
 import css from './index.module.css'
 import searchLogo from '../../img/search.svg'
+import headerLogo from './img/logo.png'
 import UserDropMenu from './UserDropMenu'
 import BtnFavorites from './components/BtnFavorites'
 import { selectFavorites } from '../slices/Favorites/selectors'
-import BtnOrders from './components/BtnOrders'
 import BtnCart from './components/BtnCart'
 import { selectSearch } from '../slices/SearchQuery/selectors'
 import { SearchQueryAction } from '../slices/SearchQuery/reducer'
@@ -33,16 +33,10 @@ const Header: FC = () => {
   return (
     <div className={css.header}>
       <div className={css.leftSide}>
-        <Link to={paths.home}>MarketPlace</Link>
-
-        <button className={css.button}>
-          <div className={css.burger}>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <span>Каталог</span>
-        </button>
+        <div className={css.logo}>
+          <img width={40} src={headerLogo} alt="Логотип" />
+          <Link to={paths.home}>MarketPlace</Link>
+        </div>
 
         <div className={css.searchWrapper}>
           <input
@@ -59,7 +53,6 @@ const Header: FC = () => {
         {isLogged ? (
           <>
             <div className={css.content}>
-              <BtnOrders />
               <BtnFavorites count={idInFavorites.length} />
               <BtnCart count={cartItems.length} />
               <UserDropMenu />

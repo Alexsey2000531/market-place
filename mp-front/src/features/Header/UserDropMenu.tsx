@@ -25,9 +25,6 @@ const UserDropMenu: FC = () => {
             <strong>{name}</strong>
           </div>
           <hr />
-          <NavLink to={'#'}>
-            <div>Заказы</div>
-          </NavLink>
           <NavLink to={'/favorites'}>
             <div>Избранное</div>
           </NavLink>
