@@ -1,54 +1,42 @@
-# React + TypeScript + Vite
+# MarketPlace Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Этот проект — клиентская часть маркетплейса, реализованная на React. Здесь реализованы:
+- Авторизация пользователей
+- Просмотр и добавление товаров в избранное
+- Корзина с товарами
+- Оформление заказа
 
-Currently, two official plugins are available:
+## Технологии
+- React 19
+- Redux Toolkit
+- React Router DOM
+- Chakra UI, Styled Components, Emotion
+- Formik
+- Vite (сборка и запуск)
+- TypeScript
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Быстрый старт
 
-## Expanding the ESLint configuration
+1. **Установите зависимости:**
+   ```bash
+   npm install
+   ```
+2. **Запустите проект в режиме разработки:**
+   ```bash
+   npm run dev
+   ```
+3. Откройте [http://localhost:5173](http://localhost:5173) в браузере.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Скрипты
+- `npm run dev` — запуск в режиме разработки
+- `npm run build` — сборка production-версии
+- `npm run preview` — предпросмотр production-сборки
+- `npm run lint` — проверка кода линтером
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Структура проекта
+- `src/components` — переиспользуемые компоненты (кнопки, инпуты, модалки и др.)
+- `src/features` — бизнес-логика (корзина, избранное, пользователь и т.д.)
+- `src/pages` — страницы приложения (главная, корзина, профиль и др.)
+- `src/store` — настройка Redux store
+- `src/routes` — роутинг
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
