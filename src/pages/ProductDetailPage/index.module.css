@@ -1,0 +1,36 @@
+.pageWrapper {
+      padding: 20px;
+      min-height: calc(100vh - 60px - 30px);
+}
+
+.wrapper {
+      display: flex;
+      gap: 40px;
+      margin-top: 40px;
+}
+
+.imagesWrapper {
+      display: flex;
+      gap: 10px;
+}
+
+.likeWrapper {
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+}
+
+.infoWrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+}
+
+.description {
+      max-width: 350px;
+}
+
+.price {
+      font-size: 26px;
+      color: var(--slateBlue-color);
+}

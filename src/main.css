@@ -1,0 +1,72 @@
+:root {
+      --text-color: black;
+      --grey-color: #fff;
+      --blue-color: blue;
+      --white-color: white;
+      --red-color: red;
+      --slateBlue-color: #5959d3;
+      --capriBlue-color: #2a5885;
+}
+
+body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: normal;
+      color: #5e5873;
+      min-width: 320px;
+}
+
+*,
+*::before,
+*::after {
+      box-sizing: border-box;
+}
+
+a {
+      color: inherit;
+      text-decoration: none;
+}
+
+ul,
+li {
+      list-style: none;
+}
+
+img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+      margin: 0;
+      padding: 0;
+}
+
+h1 {
+      font-size: 26px;
+}
+
+h2 {
+      font-size: 22px;
+}
+
+h3 {
+      font-size: 18px;
+}
+
+h4 {
+      font-size: 16px;
+}
+
+p,
+li {
+      line-height: 21px;
+}

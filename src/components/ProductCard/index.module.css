@@ -1,0 +1,36 @@
+.heart {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+}
+
+.heart>img {
+      pointer-events: none;
+}
+
+.title:hover {
+      color: var(--blue-color);
+}
+
+.price {
+      color: var(--slateBlue-color);
+}
+
+.likeWrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      top: 0;
+      right: 0;
+}

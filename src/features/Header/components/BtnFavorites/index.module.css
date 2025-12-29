@@ -1,0 +1,29 @@
+.wrapper {
+      position: relative;
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+}
+
+.counter {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--white-color);
+      width: 12px;
+      height: 12px;
+      background-color: var(--red-color);
+      border-radius: 50%;
+      font-size: 12px;
+      font-weight: bold;
+      position: absolute;
+      top: -8px;
+      right: -8px;
+}
+
+.link {
+      position: relative;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+}

@@ -1,0 +1,18 @@
+.AvatarWrapper {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      cursor: pointer;
+      border-radius: 50%;
+      margin-left: 20px;
+}
+
+.avatarBig {
+      width: 150px;
+      height: 150px;
+}
+
+.avatarSmall {
+      width: 46px;
+      height: 46px;
+}

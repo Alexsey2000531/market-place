@@ -1,0 +1,72 @@
+.button {
+      width: 100%;
+      padding: 10px 20px;
+      background: blue;
+      margin-bottom: 14px;
+      color: var(--white-color);
+      border: none;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      position: relative;
+}
+
+.color-green {
+      background-color: #0a980a;
+}
+
+.color-green:hover {
+      background-color: #21b821;
+}
+
+.color-green:active {
+      background-color: #39d039;
+}
+
+.color-red {
+      background-color: red;
+}
+
+.color-red:hover {
+      background-color: rgb(235, 55, 55);
+}
+
+.color-red:active {
+      background-color: rgb(255, 108, 108);
+}
+
+.color-blue {
+      background-color: blue;
+}
+
+.color-blue:hover {
+      background-color: rgb(9, 9, 219);
+}
+
+.color-blue:active {
+      background-color: rgb(21, 21, 107);
+}
+
+.big {
+      width: 100%;
+      padding: 10px 20px;
+      margin-bottom: 14px;
+      color: var(--white-color);
+      border: none;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      position: relative;
+}
+
+.small {
+      width: 250px;
+      padding: 10px 20px;
+      margin-bottom: 14px;
+      color: var(--white-color);
+      border: none;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      position: relative;
+}

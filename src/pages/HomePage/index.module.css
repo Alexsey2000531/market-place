@@ -1,0 +1,23 @@
+.pageWrapper {
+      padding: 20px;
+      min-height: calc(100vh - 60px - 30px);
+}
+
+.productGroup {
+      margin-top: 20px;
+}
+
+.productGroup>*:first-child {
+      margin-bottom: 10px;
+}
+
+.productGroupContainer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+}
+
+.productGroupContainer>* {
+      width: 25%;
+      margin-bottom: 20px;
+}

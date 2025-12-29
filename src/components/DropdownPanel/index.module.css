@@ -1,0 +1,14 @@
+.wrapper {
+      position: relative;
+}
+
+.DropdownWrapper {
+      background-color: var(--grey-color);
+      padding: 20px;
+      border-radius: 6px;
+      box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.06);
+      position: absolute;
+      left: -70px;
+      top: calc(100% + 10px);
+      z-index: 100;
+}

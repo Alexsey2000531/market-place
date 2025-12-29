@@ -1,0 +1,21 @@
+.pageWrapper {
+      max-width: 1440px;
+      margin-top: 20px;
+      padding: 0 15px;
+}
+
+.title {
+      margin-bottom: 20px;
+}
+
+.productGroupContainer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+}
+
+.description {
+      font-size: 21px;
+      text-align: center;
+      margin-bottom: 40px;
+}

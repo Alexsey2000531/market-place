@@ -1,0 +1,81 @@
+.header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 20px;
+      border-radius: 6px;
+      transition: margin 0.2s ease-out;
+      background-color: var(--grey-color);
+      min-height: 52px;
+      z-index: 10;
+}
+
+.leftSide {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-shrink: 0;
+      margin-right: 20px;
+}
+
+.logo {
+      font-style: italic;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+}
+
+.searchWrapper {
+      display: flex;
+      justify-content: space-between;
+      margin-left: 40px;
+      align-items: center;
+      min-width: 750px;
+      width: 100%;
+      border: 2px solid var(--slateBlue-color);
+      border-radius: 4px;
+      padding: 0 20px;
+}
+
+.searchWrapper>input {
+      width: 100%;
+      outline: none;
+      font-size: 16px;
+      line-height: 40px;
+}
+
+.searchWrapper>img {
+      cursor: pointer;
+      width: 20px;
+      height: 20px;
+}
+
+.rightSide {
+      display: flex;
+      gap: 20px;
+}
+
+.content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+}
+
+.UserProfileWrapper>div {
+      cursor: pointer;
+      line-height: 1.8;
+}
+
+.imageContent>img {
+      position: relative;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+}
+
+.active {
+      color: var(--slateBlue-color);
+}
