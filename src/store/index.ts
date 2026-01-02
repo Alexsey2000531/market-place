@@ -4,10 +4,13 @@ import reducers from './reducers'
 const store = configureStore({ reducer: reducers })
 
 store.subscribe(() => {
-  const cartState = store.getState().cart
-  const favoritesState = store.getState().favorites
-  localStorage.setItem('cart', JSON.stringify(cartState))
-  localStorage.setItem('favorites', JSON.stringify(favoritesState))
+  try {
+    const state = store.getState()
+    localStorage.setItem('cart', JSON.stringify(state.cart))
+    localStorage.setItem('favorites', JSON.stringify(state.favorites))
+  } catch (error) {
+    console.error('Ошибка сохранения в localStorage:', error)
+  }
 })
 
 export default store
