@@ -1,8 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 
 import type { UserData } from './types'
-import type { AppThunk } from '../../../store/types'
 import { createAction } from '@reduxjs/toolkit'
+import type { AppThunk } from '../../../store/types'
 
 const initialState: UserData = {
   name: '',
@@ -38,6 +38,12 @@ export const userSlice = createSlice({
       if (action.payload.password) {
         state.password = action.payload.password
       }
+    },
+    setUserData: (state, action: PayloadAction<UserData>) => {
+      state.name = action.payload.name
+      state.email = action.payload.email
+      state.password = action.payload.password
+      state.isAuthorized = action.payload.isAuthorized
     },
     logout: (state) => {
       state.isAuthorized = false

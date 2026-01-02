@@ -19,7 +19,10 @@ const CartItemsPage: FC = () => {
 
   const totalPrice = useMemo(() => {
     return products
-      .filter((product) => cartItems.some((item) => item.id === product.id))
+      .filter((product) => {
+        const cartItem = cartItems.find((item) => item.id === product.id)
+        return cartItem && cartItem.count > 0
+      })
       .reduce((sum, product) => {
         const cartItem = cartItems.find((item) => item.id === product.id)
         return sum + (cartItem ? product.discountedTotal * cartItem.count : 0)

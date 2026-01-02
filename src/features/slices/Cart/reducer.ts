@@ -19,6 +19,10 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     add: (state, action: PayloadAction<number>) => {
+      if (typeof action.payload !== 'number' && isNaN(action.payload)) {
+        return
+      }
+
       const existed = state.items.find((item) => item.id === action.payload)
       if (!existed) {
         state.items.push({ id: action.payload, count: 1 })
