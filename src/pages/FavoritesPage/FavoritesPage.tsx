@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { selectFavorites } from '../../features/slices/Favorites/selectors'
 import { Title } from 'react-head'
 import css from './index.module.css'
-import { products } from '../products'
+import { products } from '../products.ts'
 import ProductCard from '../../components/ProductCard'
 
 const FavoritesPage: FC = () => {

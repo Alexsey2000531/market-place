@@ -1,5 +1,5 @@
 export const pathsPublic: { [key: string]: string } = {
-  home: '/',
+  home: '/home',
   login: '/login',
   register: '/register',
   error: '/error',

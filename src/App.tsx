@@ -28,13 +28,15 @@ const App = () => {
   }, [dispatch])
 
   return (
-    <>
+    <div className="app-container">
       <Header />
-      <Suspense fallback={<div>Loading...</div>}>
-        <HeadProvider>{isLogged ? <PrivateRoutes /> : <PublicRoutes />}</HeadProvider>
-      </Suspense>
+      <main className="main-content">
+        <Suspense fallback={<div>Loading...</div>}>
+          <HeadProvider>{isLogged ? <PrivateRoutes /> : <PublicRoutes />}</HeadProvider>
+        </Suspense>
+      </main>
       <Footer />
-    </>
+    </div>
   )
 }
 export default App

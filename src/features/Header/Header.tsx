@@ -1,6 +1,6 @@
 import { useCallback, type ChangeEvent, type FC } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 
 import { paths } from '../../routes/helpers'
 import { selectIsLogged } from '../slices/App/selector'
@@ -14,14 +14,15 @@ import BtnCart from './components/BtnCart'
 import { selectSearch } from '../slices/SearchQuery/selectors'
 import { SearchQueryAction } from '../slices/SearchQuery/reducer'
 import type { Dispatch } from '../../store/types'
-import { selectCart } from '../slices/Cart/selectors'
+import { selectCartTotal } from '../slices/Cart/selectors'
 
 const Header: FC = () => {
   const dispatch = useDispatch<Dispatch>()
   const isLogged = useSelector(selectIsLogged)
   const searchQuery = useSelector(selectSearch)
   const idInFavorites = useSelector(selectFavorites)
-  const cartItems = useSelector(selectCart)
+  const cartTotal = useSelector(selectCartTotal)
+  const location = useLocation()
 
   const changeSearchInput = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
@@ -38,15 +39,19 @@ const Header: FC = () => {
           <Link to={paths.home}>MarketPlace</Link>
         </div>
 
-        <div className={css.searchWrapper}>
-          <input
-            value={searchQuery || ''}
-            onChange={(event) => changeSearchInput(event)}
-            type="text"
-            placeholder="Поиск товаров"
-          />
-          <img src={searchLogo} alt="Значок лупы" />
-        </div>
+        {location.pathname === paths.home ? (
+          <div className={css.searchWrapper}>
+            <input
+              value={searchQuery || ''}
+              onChange={(event) => changeSearchInput(event)}
+              type="text"
+              placeholder="Поиск товаров"
+            />
+            <img src={searchLogo} alt="Значок лупы" />
+          </div>
+        ) : (
+          ''
+        )}
       </div>
 
       <div className={css.rightSide}>
@@ -54,7 +59,7 @@ const Header: FC = () => {
           <>
             <div className={css.content}>
               <BtnFavorites count={idInFavorites.length} />
-              <BtnCart count={cartItems.length} />
+              <BtnCart count={cartTotal} />
               <UserDropMenu />
             </div>
           </>

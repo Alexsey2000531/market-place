@@ -12,10 +12,7 @@ const HomePage: React.FC = () => {
   const searchQuery = useSelector(selectSearch)
 
   const filteredProducts = products.filter(
-    (product) =>
-      product.title.toLowerCase().includes(searchQuery) ||
-      product.title.includes(searchQuery) ||
-      product.description.toLowerCase().includes(searchQuery)
+    (product) => product.title.toLowerCase().includes(searchQuery) || product.title.includes(searchQuery)
   )
 
   return (

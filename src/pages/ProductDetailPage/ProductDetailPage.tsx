@@ -2,7 +2,7 @@ import { Title } from 'react-head'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectFavorites } from '../../features/slices/Favorites/selectors'
 import { useParams } from 'react-router-dom'
-import { products } from '../products'
+import { products } from '../products.ts'
 import css from './index.module.css'
 import { useCallback, useEffect, useMemo, useState, type MouseEvent } from 'react'
 import { addToFavorites, removeToFavorites } from '../../features/slices/Favorites/reducer'
@@ -12,6 +12,7 @@ import type { ProductDetails } from '../types'
 import { addAction } from '../../features/slices/Cart/reducer'
 import type { Dispatch } from '../../store/types'
 import Button from '../../components/Button'
+import { selectInCart } from '../../features/slices/Cart/selectors.ts'
 
 const defaultProductDetail: ProductDetails = {
   id: 0,
@@ -27,6 +28,7 @@ const ProductDetailPage = () => {
   const params = useParams()
   const productId = Number(params.id)
   const dispatch = useDispatch<Dispatch>()
+  const isCart = useSelector(selectInCart(productId))
   const [productDetail, setProductDetail] = useState(defaultProductDetail)
 
   useEffect(() => {
@@ -54,9 +56,12 @@ const ProductDetailPage = () => {
   const addCartItem = useCallback(
     (event: MouseEvent<HTMLButtonElement>) => {
       const { productId } = event.currentTarget.dataset
-      dispatch(addAction(+productId!))
+
+      if (!isCart) {
+        dispatch(addAction(+productId!))
+      }
     },
-    [dispatch]
+    [dispatch, isCart]
   )
 
   if (!productDetail) {
@@ -73,15 +78,25 @@ const ProductDetailPage = () => {
           <div className={css.imagesWrapper}>
             <img src={imgSrc} alt="Сердце" />
             <div className={css.likeWrapper} data-product-id={id} onClick={handleFavorites}>
-              {isLiked ? <img src={heartFill} /> : <img src={heartEmpty} />}
+              {isLiked ? (
+                <img src={heartFill} alt="Закрашенное сердце" />
+              ) : (
+                <img src={heartEmpty} alt="Пустое сердце" />
+              )}
             </div>
           </div>
           <div className={css.infoWrapper}>
             <h1 className={css.title}>{title}</h1>
             <p className={css.description}>{description}</p>
             <span className={css.price}>{discountedTotal} ₽</span>
-            <Button data-product-id={id} onClick={addCartItem} style={{ background: 'blue' }} color="green">
-              В корзину
+            <Button
+              disabled={isCart}
+              data-product-id={id}
+              onClick={addCartItem}
+              style={{ background: isCart ? 'gray' : 'blue' }}
+              color="green"
+            >
+              {isCart ? 'Добавлен' : 'В корзину'}
             </Button>
           </div>
         </div>

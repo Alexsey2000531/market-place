@@ -12,6 +12,7 @@ import { addAction, removeAction } from '../../features/slices/Cart/reducer.ts'
 import { selectIsLogged } from '../../features/slices/App/selector.ts'
 import type { Dispatch } from '../../store/types.ts'
 import Button from '../Button/Button.tsx'
+import { selectInCart } from '../../features/slices/Cart/selectors.ts'
 
 const ProductCard: FC<ProductDetails> = ({
   title,
@@ -25,6 +26,7 @@ const ProductCard: FC<ProductDetails> = ({
   const dispatch = useDispatch<Dispatch>()
   const location = useLocation()
   const isLogged = useSelector(selectIsLogged)
+  const isCart = useSelector(selectInCart(id))
 
   const handleFavorites = useCallback(
     (event: MouseEvent<HTMLElement>) => {
@@ -45,9 +47,12 @@ const ProductCard: FC<ProductDetails> = ({
   const addCartItem = useCallback(
     (event: MouseEvent<HTMLElement>) => {
       const { productId } = event.currentTarget.dataset
-      dispatch(addAction(+productId!))
+
+      if (!isCart) {
+        dispatch(addAction(+productId!))
+      }
     },
-    [dispatch]
+    [dispatch, isCart]
   )
 
   const removeCartItem = useCallback(
@@ -86,13 +91,14 @@ const ProductCard: FC<ProductDetails> = ({
       <CardFooter gap="2">
         {!isCartItemsPage && (
           <Button
+            disabled={isCart}
             data-product-id={id}
             onClick={addCartItem}
             dataProductId={id}
-            style={{ margin: 'auto', background: 'blue' }}
+            style={{ margin: 'auto', background: isCart ? 'gray' : 'blue' }}
             color="blue"
           >
-            В корзину
+            {isCart ? 'Добавлен' : 'В корзину'}
           </Button>
         )}
         {(isFavoritesPage || isCartItemsPage) && (

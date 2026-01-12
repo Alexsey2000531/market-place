@@ -6,9 +6,9 @@ const loadCartStore = () => {
     const savedCart = localStorage.getItem('cart')
     return savedCart ? JSON.parse(savedCart) : { items: [] }
   } catch (e) {
-    if (e instanceof Error) {
-      return { items: [] }
-    }
+    // eslint-disable-next-line no-console
+    console.error('Ошибка загрузки корзины:', e)
+    return { items: [] }
   }
 }
 
@@ -19,16 +19,15 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     add: (state, action: PayloadAction<number>) => {
-      if (typeof action.payload !== 'number' && isNaN(action.payload)) {
-        return
-      }
+      const productId = action.payload
 
-      const existed = state.items.find((item) => item.id === action.payload)
+      const existed = state.items.find((item) => item.id === productId)
+
       if (!existed) {
-        state.items.push({ id: action.payload, count: 1 })
-        return
+        state.items.push({ id: productId, count: 1 })
+      } else {
+        existed.count += 1
       }
-      existed.count += 1
     },
     remove: (state, action: PayloadAction<number>) => {
       const existed = state.items.find((item) => item.id === action.payload)
@@ -50,6 +49,22 @@ export const cartSlice = createSlice({
     },
   },
 })
+
+export const saveCartMiddleWare = (store: any) => (next: any) => (action: any) => {
+  const result = next(action)
+
+  if (action.type?.startsWith('cart/')) {
+    const state = store.getState().cart
+    try {
+      localStorage.setItem('cart', JSON.stringify(state))
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error('Ошибка сохранения корзины:', e)
+    }
+  }
+
+  return result
+}
 
 export const {
   add: addAction,

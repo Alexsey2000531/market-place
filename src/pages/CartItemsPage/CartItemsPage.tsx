@@ -3,13 +3,13 @@ import { selectCart } from '../../features/slices/Cart/selectors'
 import { useMemo, useState, type FC } from 'react'
 import { Title } from 'react-head'
 import css from './index.module.css'
-import { products } from '../products'
+import { products } from '../products.ts'
 import Button from '../../components/Button'
 import plusImage from './img/plus.png'
 import minusImage from './img/minus.png'
 import deleteImage from './img/delete.png'
 import type { Dispatch } from '../../store/types'
-import { addAction, clearCartAction, removeAction, removeItemAction } from '../../features/slices/Cart/reducer'
+import { addAction, removeAction, removeItemAction } from '../../features/slices/Cart/reducer'
 import Modal from '../../components/Modal'
 
 const CartItemsPage: FC = () => {
@@ -18,15 +18,13 @@ const CartItemsPage: FC = () => {
   const dispatch = useDispatch<Dispatch>()
 
   const totalPrice = useMemo(() => {
-    return products
-      .filter((product) => {
-        const cartItem = cartItems.find((item) => item.id === product.id)
-        return cartItem && cartItem.count > 0
-      })
-      .reduce((sum, product) => {
-        const cartItem = cartItems.find((item) => item.id === product.id)
-        return sum + (cartItem ? product.discountedTotal * cartItem.count : 0)
-      }, 0)
+    return cartItems.reduce((sum, cartItem) => {
+      const product = products.find((item) => item.id === cartItem.id)
+      if (product) {
+        return sum + product.discountedTotal * cartItem.count
+      }
+      return sum
+    }, 0)
   }, [cartItems])
 
   const increase = (id: number) => {
@@ -87,7 +85,6 @@ const CartItemsPage: FC = () => {
                   isOpen={isOpen}
                   onClose={() => {
                     setIsOpen(false)
-                    dispatch(clearCartAction())
                   }}
                 />
               </div>
